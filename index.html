@@ -1,0 +1,1470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Eyethu Roadhouse — Taste the Tradition. Share the Moment. | Uitval, Ladysmith</title>
+<meta name="description" content="Eyethu Roadhouse — the first modern roadhouse in Uitval, Ladysmith. Braai, chicken, wood-fired pizza and burgers. Book a table or a private function.">
+<style>
+/* =========================================================
+   Eyethu Roadhouse — design tokens
+   Palette: warm cream mat, ember/braai-coal accent, ink text
+   Type: Fraunces italic (display) + Inter (body / UI)
+   ========================================================= */
+:root {
+  --cream:        #F2EEE2;
+  --cream-deep:   #E9E2CF;
+  --card:         #FBF9F3;
+  --card-soft:    #EFE8D6;
+  --ink:          #241F17;
+  --ink-soft:     #6B6250;
+  --line:         #DCD2B7;
+  --ember:        #B23B20;
+  --ember-dark:   #8C2C17;
+  --gold:         #A9782E;
+  --whatsapp:     #3F6B4C;
+  --radius-lg:    32px;
+  --radius-md:    22px;
+  --radius-sm:    14px;
+  --shadow-card:  0 1px 2px rgba(36,31,23,0.05), 0 30px 50px -30px rgba(36,31,23,0.35);
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--cream);
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+}
+
+:where([class^="ri-"])::before { content: "\f3c2"; }
+
+/* ---------- Type ---------- */
+.font-display {
+  font-family: 'Fraunces', 'Times New Roman', serif;
+  font-style: italic;
+  font-optical-sizing: auto;
+  letter-spacing: -0.01em;
+}
+
+.eyebrow {
+  font-family: 'Inter', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ember);
+}
+
+.eyebrow-soft {
+  font-family: 'Inter', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--ink-soft);
+}
+
+.heading-mixed em {
+  font-style: italic;
+  font-weight: 400;
+}
+.heading-mixed strong {
+  font-style: italic;
+  font-weight: 600;
+}
+
+/* ---------- Layout shell ---------- */
+.wrap {
+  max-width: 1360px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+@media (min-width: 768px) {
+  .wrap { padding: 0 32px; }
+}
+
+.stack { padding-top: 14px; padding-bottom: 14px; }
+
+/* ---------- Postcard card ---------- */
+.card {
+  position: relative;
+  background: var(--card);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+}
+
+.card-cream { background: var(--card-soft); }
+.card-ink   { background: var(--ink); color: var(--cream); }
+
+.card-pad { padding: 44px 28px; }
+@media (min-width: 768px) {
+  .card-pad { padding: 72px 64px; }
+}
+.card-pad-sm { padding: 32px 24px; }
+@media (min-width: 768px) {
+  .card-pad-sm { padding: 44px 48px; }
+}
+
+/* ---------- Buttons ---------- */
+.btn-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 28px;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 15px;
+  white-space: nowrap;
+  transition: all .2s ease;
+  border: 1px solid transparent;
+}
+.btn-ember {
+  background: var(--ember);
+  color: #fff;
+}
+.btn-ember:hover { background: var(--ember-dark); }
+
+.btn-outline {
+  background: transparent;
+  border-color: rgba(255,255,255,0.6);
+  color: #fff;
+}
+.btn-outline:hover { background: rgba(255,255,255,0.12); }
+
+.btn-outline-ink {
+  background: transparent;
+  border-color: var(--line);
+  color: var(--ink);
+}
+.btn-outline-ink:hover { background: rgba(36,31,23,0.05); }
+
+.btn-sm {
+  padding: 9px 20px;
+  font-size: 13px;
+}
+
+.icon-circle {
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  transition: background .2s ease;
+  flex-shrink: 0;
+}
+.icon-circle:hover { background: rgba(255,255,255,0.12); }
+.icon-circle-ink {
+  border-color: var(--line);
+  color: var(--ink);
+}
+.icon-circle-ink:hover { background: rgba(36,31,23,0.05); }
+
+/* ---------- Floating nav ---------- */
+#site-nav {
+  position: fixed;
+  top: 18px;
+  left: 18px;
+  right: 18px;
+  z-index: 100;
+  transition: all .35s ease;
+}
+@media (min-width: 768px) {
+  #site-nav { top: 24px; left: 32px; right: 32px; }
+}
+
+.nav-inner {
+  max-width: 1360px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 10px 10px 22px;
+  border-radius: 999px;
+  transition: all .35s ease;
+}
+
+#site-nav .nav-inner { background: transparent; }
+#site-nav.scrolled .nav-inner {
+  background: var(--card);
+  box-shadow: var(--shadow-card);
+}
+
+.nav-logo {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-weight: 500;
+  font-size: 20px;
+  color: #fff;
+  transition: color .35s ease;
+}
+#site-nav.scrolled .nav-logo,
+.nav-on-light .nav-logo { color: var(--ink); }
+
+.nav-links a {
+  color: rgba(255,255,255,0.88);
+  font-size: 14px;
+  font-weight: 500;
+  transition: color .2s ease, opacity .35s ease;
+}
+.nav-links a:hover { color: #fff; }
+#site-nav.scrolled .nav-links a { color: var(--ink-soft); }
+#site-nav.scrolled .nav-links a:hover { color: var(--ink); }
+
+/* ---------- Hero ---------- */
+.hero-card {
+  position: relative;
+  height: 88vh;
+  min-height: 620px;
+  margin-top: 8px;
+  color: #fff;
+}
+
+.hero-slide {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transition: opacity 1.4s ease;
+}
+.hero-slide.active { opacity: 1; }
+
+.hero-scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(20,15,8,0.45) 0%, rgba(20,15,8,0.15) 32%, rgba(20,15,8,0.55) 100%);
+}
+
+.hero-wordmark {
+  font-size: clamp(46px, 9vw, 118px);
+  line-height: 0.98;
+}
+
+.hero-dots {
+  position: absolute;
+  left: 50%;
+  bottom: 28px;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+}
+.hero-dot {
+  width: 30px;
+  height: 3px;
+  border-radius: 3px;
+  background: rgba(255,255,255,0.35);
+  overflow: hidden;
+  cursor: pointer;
+}
+.hero-dot span {
+  display: block;
+  height: 100%;
+  width: 0%;
+  background: #fff;
+}
+.hero-dot.active span { animation: dotfill 6s linear forwards; }
+@keyframes dotfill { from { width: 0%; } to { width: 100%; } }
+
+/* ---------- Community ticker ---------- */
+.ticker-track {
+  display: flex;
+  gap: 48px;
+  white-space: nowrap;
+  animation: ticker 28s linear infinite;
+}
+@keyframes ticker {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* ---------- Menu tabs ---------- */
+.menu-tab {
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--ink-soft);
+}
+.menu-tab.active {
+  background: var(--ember);
+  border-color: var(--ember);
+  color: #fff;
+}
+.menu-tab:not(.active):hover { background: rgba(178,59,32,0.06); }
+
+.menu-category { display: none; }
+.menu-category.active { display: block; }
+
+.menu-item-card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+.menu-item-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-card);
+}
+.menu-item-image-wrap {
+  height: 190px;
+  background: var(--card-soft);
+  overflow: hidden;
+}
+.menu-item-image {
+  width: 100%; height: 100%;
+  object-fit: contain;
+  transition: transform .4s ease;
+}
+.menu-item-card:hover .menu-item-image { transform: scale(1.06); }
+
+/* ---------- Pricing / function cards ---------- */
+.price-card {
+  background: var(--card);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--line);
+  overflow: hidden;
+}
+.price-card.featured { border-color: var(--ember); }
+
+/* ---------- Gallery ---------- */
+.gallery-item {
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+.gallery-item img {
+  transition: transform .5s ease;
+}
+.gallery-item:hover img { transform: scale(1.05); }
+
+/* ---------- Forms ---------- */
+.field-input, .field-textarea, .field-select {
+  width: 100%;
+  padding: 14px 16px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--line);
+  background: var(--card);
+  font-size: 14px;
+  color: var(--ink);
+  transition: border-color .2s ease, box-shadow .2s ease;
+}
+.field-input:focus, .field-textarea:focus, .field-select:focus {
+  outline: none;
+  border-color: var(--ember);
+  box-shadow: 0 0 0 3px rgba(178,59,32,0.12);
+}
+.field-label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink-soft);
+  margin-bottom: 8px;
+}
+
+.booking-radio div { display: none; }
+input[type="radio"]:checked + .booking-radio div { display: flex; }
+.menu-options { display: none; }
+.menu-options.show { display: block; }
+
+/* ---------- Testimonial ---------- */
+.quote-card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+}
+
+/* ---------- Floating action buttons ---------- */
+.fab {
+  position: fixed;
+  bottom: 24px;
+  width: 58px;
+  height: 58px;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  box-shadow: 0 12px 28px -8px rgba(20,15,8,0.45);
+  z-index: 90;
+  transition: transform .2s ease;
+}
+.fab:hover { transform: translateY(-2px) scale(1.04); }
+.fab-whatsapp { right: 24px; background: var(--whatsapp); }
+.fab-chat { left: 24px; background: var(--ember); }
+
+/* ---------- Chatbot panel ---------- */
+#chat-panel {
+  position: fixed;
+  left: 24px;
+  bottom: 96px;
+  width: min(360px, calc(100vw - 48px));
+  max-height: min(520px, calc(100vh - 160px));
+  background: var(--card);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 24px 60px -20px rgba(20,15,8,0.5);
+  z-index: 95;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(16px) scale(0.98);
+  pointer-events: none;
+  transition: all .25s ease;
+  border: 1px solid var(--line);
+}
+#chat-panel.open {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+.chat-header {
+  background: var(--ink);
+  color: var(--cream);
+  padding: 18px 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.chat-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background: var(--card);
+}
+.chat-bubble {
+  max-width: 84%;
+  padding: 10px 14px;
+  border-radius: 16px;
+  font-size: 13.5px;
+  line-height: 1.45;
+}
+.chat-bubble.bot {
+  background: var(--card-soft);
+  color: var(--ink);
+  border-bottom-left-radius: 4px;
+  align-self: flex-start;
+}
+.chat-bubble.user {
+  background: var(--ember);
+  color: #fff;
+  border-bottom-right-radius: 4px;
+  align-self: flex-end;
+}
+.chat-suggest {
+  font-size: 12px;
+  padding: 7px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: var(--card);
+  color: var(--ink-soft);
+  transition: all .15s ease;
+}
+.chat-suggest:hover { border-color: var(--ember); color: var(--ember); }
+.chat-input-row {
+  display: flex;
+  gap: 8px;
+  padding: 12px;
+  border-top: 1px solid var(--line);
+  background: var(--card);
+}
+.chat-input-row input {
+  flex: 1;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 10px 16px;
+  font-size: 13.5px;
+  background: var(--cream);
+}
+.chat-input-row input:focus { outline: none; border-color: var(--ember); }
+.chat-send {
+  width: 40px; height: 40px;
+  border-radius: 999px;
+  background: var(--ember);
+  color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.chat-send:hover { background: var(--ember-dark); }
+
+/* Typing indicator */
+.typing-dot {
+  width: 6px; height: 6px; border-radius: 999px;
+  background: var(--ink-soft);
+  animation: typingBounce 1s infinite ease-in-out;
+}
+.typing-dot:nth-child(2) { animation-delay: .15s; }
+.typing-dot:nth-child(3) { animation-delay: .3s; }
+@keyframes typingBounce {
+  0%, 60%, 100% { transform: translateY(0); opacity: .5; }
+  30% { transform: translateY(-4px); opacity: 1; }
+}
+
+/* ---------- Misc ---------- */
+.hairline { border-color: var(--line); }
+.text-ink-soft { color: var(--ink-soft); }
+.text-ember { color: var(--ember); }
+.text-gold { color: var(--gold); }
+.bg-ember { background: var(--ember); }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .ticker-track { animation: none; }
+  .hero-dot span { animation: none; }
+}
+
+/* Tailwind base layer hook (config injected via script) */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .rounded-button { border-radius: 999px; }
+}
+
+</style>
+<script src="https://cdn.tailwindcss.com/3.4.16"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.6.2/fuse.min.js"></script>
+</head>
+<body>
+
+<!-- ============ Floating Nav ============ -->
+<div id="site-nav">
+  <div class="nav-inner">
+    <a href="#home" class="nav-logo">Eyethu Roadhouse</a>
+    <nav class="nav-links hidden lg:flex items-center gap-8 mr-6">
+      <a href="#about">About</a>
+      <a href="#menu">Menu</a>
+      <a href="#functions">Functions</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="flex items-center gap-3">
+      <button type="button" id="nav-hamburger" class="icon-circle lg:hidden" aria-label="Open menu">
+        <i class="ri-menu-line"></i>
+      </button>
+      <a href="#booking" class="btn-pill btn-ember btn-sm hidden sm:inline-flex">Book a Table</a>
+    </div>
+  </div>
+  <!-- Mobile menu -->
+  <div id="mobile-menu" class="hidden mt-2 mx-1 card card-cream card-pad-sm">
+    <div class="flex flex-col gap-4 text-lg font-medium" style="color:var(--ink)">
+      <a href="#about">About</a>
+      <a href="#menu">Menu</a>
+      <a href="#functions">Private Functions</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#booking">Booking</a>
+      <a href="#contact">Contact</a>
+      <a href="https://wa.me/27724512645" class="btn-pill btn-ember justify-center mt-2">
+        <i class="ri-whatsapp-line"></i> 072 451 2645
+      </a>
+    </div>
+  </div>
+</div>
+
+<main class="wrap stack">
+
+  <!-- ============ HERO ============ -->
+  <section id="home" class="card hero-card">
+    <div class="hero-slide active" style="background-image:url('https://images.unsplash.com/photo-1512719724284-dbb9ef47eac5?fm=jpg&q=70&w=1800&auto=format&fit=crop');"></div>
+    <div class="hero-slide" style="background-image:url('https://i.postimg.cc/ydyhWkhN/27131b23171291c0b3709a488c2eb032.jpg');"></div>
+    <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1613244666139-b6629daf6b96?fm=jpg&q=70&w=1800&auto=format&fit=crop');"></div>
+    <div class="hero-scrim"></div>
+
+    <div class="relative h-full flex flex-col justify-between px-6 py-8 md:px-12 md:py-10">
+      <div class="flex items-center justify-between">
+        <span class="font-display text-xl md:text-2xl">Eyethu Roadhouse</span>
+        <div class="flex items-center gap-3">
+          <button type="button" class="icon-circle" aria-label="Menu" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
+            <i class="ri-menu-line"></i>
+          </button>
+          <a href="#booking" class="btn-pill btn-outline btn-sm">Reservation</a>
+        </div>
+      </div>
+
+      <div class="text-center max-w-3xl mx-auto">
+        <p class="eyebrow-soft mb-4" style="color:rgba(255,255,255,0.75)">UITVAL · LADYSMITH · KWAZULU-NATAL</p>
+        <h1 class="font-display hero-wordmark font-medium">Eyethu Roadhouse</h1>
+        <p class="mt-5 text-sm md:text-base max-w-xl mx-auto" style="color:rgba(255,255,255,0.88)">
+          Eyethu — "ours" in isiZulu. Braai, chicken and wood-fired pizza for Uitval, KwaHlathi, Limehill, Tholeni and Ekuvukeni.
+        </p>
+        <div class="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
+          <button type="button" onclick="document.getElementById('menu').scrollIntoView({behavior:'smooth'})" class="btn-pill btn-ember">View Menu</button>
+          <button type="button" onclick="document.getElementById('functions').scrollIntoView({behavior:'smooth'})" class="btn-pill btn-outline">Book a Function</button>
+        </div>
+      </div>
+
+      <div class="flex items-center justify-center gap-2" id="hero-dots">
+        <div class="hero-dot active" data-i="0"><span></span></div>
+        <div class="hero-dot" data-i="1"><span></span></div>
+        <div class="hero-dot" data-i="2"><span></span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ Community ticker ============ -->
+  <div class="card card-ink mt-4 md:mt-5">
+    <div class="py-4 overflow-hidden">
+      <div class="ticker-track eyebrow-soft" style="color:var(--cream)">
+        <span>SERVING UITVAL</span><span>·</span><span>KWAHLATHI</span><span>·</span><span>LIMEHILL</span><span>·</span><span>THOLENI</span><span>·</span><span>EKUVUKENI</span><span>·</span>
+        <span>SERVING UITVAL</span><span>·</span><span>KWAHLATHI</span><span>·</span><span>LIMEHILL</span><span>·</span><span>THOLENI</span><span>·</span><span>EKUVUKENI</span><span>·</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ ABOUT ============ -->
+  <section id="about" class="card mt-4 md:mt-5">
+    <div class="grid lg:grid-cols-2">
+      <div class="h-72 lg:h-auto">
+        <img src="https://i.postimg.cc/ydyhWkhN/27131b23171291c0b3709a488c2eb032.jpg" alt="Inside Eyethu Roadhouse, Uitval" class="w-full h-full object-cover">
+      </div>
+      <div class="card-pad flex flex-col justify-center">
+        <p class="eyebrow mb-4">Family owned · Uitval, Ladysmith</p>
+        <h2 class="font-display heading-mixed text-4xl md:text-5xl mb-6"><em>About</em> <strong>our roadhouse</strong></h2>
+        <p class="text-ink-soft leading-relaxed mb-4">
+          Raymond and Thandeka Mpala opened Eyethu Roadhouse so their community would stop driving an hour just to share a proper meal. It's the first modern, affordable roadhouse of its kind in Uitval — built for birthdays, baby showers, graduations and Sunday tables.
+        </p>
+        <p class="text-ink-soft leading-relaxed mb-8">
+          More than 60% of what lands on your plate comes from local growers, bakers and suppliers, and every person on our floor calls Uitval or a neighbouring community home. Eyethu means "ours" — and that's exactly how it feels once you're through the door.
+        </p>
+        <div class="grid grid-cols-3 gap-6 pt-6 border-t hairline">
+          <div>
+            <p class="font-display text-3xl text-ember">60%+</p>
+            <p class="text-xs text-ink-soft mt-1 uppercase tracking-wide">Local suppliers</p>
+          </div>
+          <div>
+            <p class="font-display text-3xl text-ember">10AM–10PM</p>
+            <p class="text-xs text-ink-soft mt-1 uppercase tracking-wide">Open daily</p>
+          </div>
+          <div>
+            <p class="font-display text-3xl text-ember">100%</p>
+            <p class="text-xs text-ink-soft mt-1 uppercase tracking-wide">Local team</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ Feature highlights ============ -->
+  <section class="card mt-4 md:mt-5">
+    <div class="card-pad grid md:grid-cols-3 gap-10 md:gap-8">
+      <div class="text-center md:text-left">
+        <div class="w-14 h-14 rounded-full flex items-center justify-center bg-ember text-white mb-5 mx-auto md:mx-0">
+          <i class="ri-fire-line ri-lg"></i>
+        </div>
+        <h3 class="font-display text-2xl italic mb-3">Fire-grilled braai</h3>
+        <p class="text-ink-soft leading-relaxed text-sm">Beef, boerewors and ribs, grilled the traditional way over open flame — served with pap and chakalaka.</p>
+      </div>
+      <div class="text-center md:text-left">
+        <div class="w-14 h-14 rounded-full flex items-center justify-center bg-ember text-white mb-5 mx-auto md:mx-0">
+          <i class="ri-restaurant-2-line ri-lg"></i>
+        </div>
+        <h3 class="font-display text-2xl italic mb-3">Signature Eyethu chicken</h3>
+        <p class="text-ink-soft leading-relaxed text-sm">Our house marinade, wood-fired pizzas and hand-built burgers — everything made to order, every day.</p>
+      </div>
+      <div class="text-center md:text-left">
+        <div class="w-14 h-14 rounded-full flex items-center justify-center bg-ember text-white mb-5 mx-auto md:mx-0">
+          <i class="ri-cake-3-line ri-lg"></i>
+        </div>
+        <h3 class="font-display text-2xl italic mb-3">Private functions</h3>
+        <p class="text-ink-soft leading-relaxed text-sm">Birthdays, baby showers and graduations — full catering packages from R185pp, decor available on request.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ MENU ============ -->
+  <section id="menu" class="card mt-4 md:mt-5">
+    <div class="card-pad">
+      <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-10">
+        <div>
+          <p class="eyebrow mb-3">Priced in South African Rand (ZAR)</p>
+          <h2 class="font-display heading-mixed text-4xl md:text-5xl"><em>Our</em> <strong>menu</strong></h2>
+        </div>
+        <p class="text-ink-soft max-w-sm text-sm">Everything below is available to order in-house, for collection, or over WhatsApp.</p>
+      </div>
+
+      <div class="flex flex-wrap gap-3 mb-10">
+        <button type="button" class="menu-tab active btn-pill btn-sm" data-category="chicken">
+          <i class="ri-restaurant-2-line"></i> Chicken Meals
+        </button>
+        <button type="button" class="menu-tab btn-pill btn-sm" data-category="burgers">
+          <i class="ri-cake-line"></i> Burgers &amp; Wraps
+        </button>
+        <button type="button" class="menu-tab btn-pill btn-sm" data-category="pizzas">
+          <i class="ri-restaurant-line"></i> Pizzas
+        </button>
+        <button type="button" class="menu-tab btn-pill btn-sm" data-category="braai">
+          <i class="ri-fire-line"></i> Braai Platters
+        </button>
+        <button type="button" class="menu-tab btn-pill btn-sm" data-category="sides">
+          <i class="ri-bowl-line"></i> Sides &amp; Salads
+        </button>
+        <button type="button" class="menu-tab btn-pill btn-sm" data-category="beverages">
+          <i class="ri-cup-line"></i> Beverages
+        </button>
+      </div>
+
+      <div class="menu-content">
+        <!-- Chicken -->
+        <div class="menu-category active" data-category="chicken">
+          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="menu-item-card">
+              <div class="menu-item-image-wrap"><img src="https://i.postimg.cc/hP3hZzdF/Signature-Chicken.jpg" alt="Eyethu Signature Chicken" class="menu-item-image"></div>
+              <div class="p-5"><h3 class="font-semibold mb-1">Eyethu Signature Chicken</h3><p class="text-ink-soft text-sm mb-3">Our famous grilled chicken marinated in traditional South African spices</p><div class="text-gold font-bold">R89.00</div></div>
+            </div>
+            <div class="menu-item-card">
+              <div class="menu-item-image-wrap"><img src="https://i.postimg.cc/mDSFL7bd/Wings.jpg" alt="Eyethu Wings" class="menu-item-image"></div>
+              <div class="p-5"><h3 class="font-semibold mb-1">Eyethu Wings</h3><p class="text-ink-soft text-sm mb-3">Crispy wings tossed in our signature sauce blend</p><div class="text-gold font-bold">R65.00</div></div>
+            </div>
+            <div class="menu-item-card">
+              <div class="menu-item-image-wrap"><img src="https://i.postimg.cc/5NyFJHD3/Chicken-Schnitzel.jpg" alt="Chicken Schnitzel" class="menu-item-image"></div>
+              <div class="p-5"><h3 class="font-semibold mb-1">Chicken Schnitzel</h3><p class="text-ink-soft text-sm mb-3">Crispy golden schnitzel served with chips and salad</p><div class="text-gold font-bold">R95.00</div></div>
+            </div>
+          </div>
+        </div>
+        <!-- Burgers -->
+        <div class="menu-category hidden" data-category="burgers">
+          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="menu-item-card">
+              <div class="menu-item-image-wrap"><img src="https://i.postimg.cc/13NngkmV/Classic-Eyethu-Burger.jpg" alt="Classic Eyethu Burger" class="menu-item-image"></div>
+              <div class="p-5"><h3 class="font-semibold mb-1">Classic Eyethu Burger</h3><p class="text-ink-soft text-sm mb-3">Juicy beef patty with cheese, lettuce, tomato and our special sauce</p><div class="text-gold font-bold">R75.00</div></div>
+            </div>
+            <div class="menu-item-card">
+              <div class="menu-item-image-wrap"><img src="https://i.postimg.cc/HsFjC6wY/Chicken-Bacon-Burger.jpg" alt="Chicken &amp; Bacon Burger" class="menu-item-image"></div>
+              <div class="p-5"><h3 class="font-semibold mb-1">Chicken &amp; Bacon Burger</h3><p class="text-ink-soft text-sm mb-3">Grilled chicken breast with crispy bacon and avocado</p><div class="text-gold font-bold">R85.00</div></div>
+            </div>
+            <div class="menu-item-card">
+              <div class="menu-item-image-wrap"><img src="https://i.postimg.cc/1zB94BqN/Chicken-Mayo-Wrap.jpg" alt="Chicken Mayo Wrap" class="menu-item-image"></div>
+              <div class="p-5"><h3 class="font-semibold mb-1">Chicken Mayo Wrap</h3><p class="text-ink-soft text-sm mb-3">Grilled chicken strips with lettuce, tomato and mayo in a soft wrap</p><div class="text-gold font-bold">R65.00</div></div>
+            </div>
+          </div>
+        </div>
+        <!-- Pizzas -->
+        <div class="menu-category hidden" data-category="pizzas">
+          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="menu-item-card">
+              <div class="menu-item-image-wrap"><img src="https://i.postimg.cc/3N47SHbg/Pepperoni-Pizza.jpg" alt="Pepperoni Pizza" class="menu-item-image"></div>
+              <div class="p-5"><h3 class="font-semibold mb-1">Pepperoni Pizza</h3><p class="text-ink-soft text-sm mb-3">Classic pepperoni with mozzarella on our wood-fired crust</p><div class="text-gold font-bold">R120.00</div></div>
+            </div>
+            <div class="menu-item-card">
+              <div class="menu-item-image-wrap"><img src="https://i.postimg.cc/vZLyShXS/BBQ-Chicken-Pizza.jpg" alt="BBQ Chicken Pizza" class="menu-item-image"></div>
+              <div class="p-5"><h3 class="font-semibold mb-1">BBQ Chicken Pizza</h3><p class="text-ink-soft text-sm mb-3">Tender chicken with BBQ sauce, red onions and mozzarella</p><div class="text-gold font-bold">R135.00</div></div>
+            </div>
+            <div class="menu-item-card">
+              <div class="menu-item-image-wrap"><img src="https://i.postimg.cc/7LH4vzWP/Vegetarian-Pizza.jpg" alt="Vegetarian Pizza" class="menu-item-image"></div>
+              <div class="p-5"><h3 class="font-semibold mb-1">Vegetarian Pizza</h3><p class="text-ink-soft text-sm mb-3">Mushrooms, bell peppers, onions, olives and mozzarella</p><div class="text-gold font-bold">R110.00</div></div>
+            </div>
+          </div>
+        </div>
+        <!-- Braai -->
+        <div class="menu-category hidden" data-category="braai">
+          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="menu-item-card">
+              <div class="menu-item-image-wrap"><img src="https://i.postimg.cc/zB31vrN9/Traditional-Braai-Platter.jpg" alt="Traditional Braai Platter" class="menu-item-image"></div>
+              <div class="p-5"><h3 class="font-semibold mb-1">Traditional Braai Platter</h3><p class="text-ink-soft text-sm mb-3">Beef, boerewors and ribs served with pap and chakalaka</p><div class="text-gold font-bold">R150.00</div></div>
+            </div>
+            <div class="menu-item-card">
+              <div class="menu-item-image-wrap"><img src="https://i.postimg.cc/MHQ20mv5/Beef-Steak-Platter.jpg" alt="Beef Steak Platter" class="menu-item-image"></div>
+              <div class="p-5"><h3 class="font-semibold mb-1">Beef Steak Platter</h3><p class="text-ink-soft text-sm mb-3">300g rump steak with herb butter, chips and salad</p><div class="text-gold font-bold">R175.00</div></div>
+            </div>
+            <div class="menu-item-card">
+              <div class="menu-item-image-wrap"><img src="https://i.postimg.cc/BZLXwWFY/Lamb-Chops-Platter.jpg" alt="Lamb Chops Platter" class="menu-item-image"></div>
+              <div class="p-5"><h3 class="font-semibold mb-1">Lamb Chops Platter</h3><p class="text-ink-soft text-sm mb-3">Three succulent lamb chops with mint sauce and sides</p><div class="text-gold font-bold">R190.00</div></div>
+            </div>
+          </div>
+        </div>
+        <!-- Sides -->
+        <div class="menu-category hidden" data-category="sides">
+          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="menu-item-card">
+              <div class="menu-item-image-wrap"><img src="https://i.postimg.cc/Vsx5x7BY/Chakalaka.jpg" alt="Chakalaka" class="menu-item-image"></div>
+              <div class="p-5"><h3 class="font-semibold mb-1">Chakalaka</h3><p class="text-ink-soft text-sm mb-3">Traditional South African spicy vegetable relish</p><div class="text-gold font-bold">R25.00</div></div>
+            </div>
+            <div class="menu-item-card">
+              <div class="menu-item-image-wrap"><img src="https://i.postimg.cc/QdsCtHyw/Garden-Salad.jpg" alt="Garden Salad" class="menu-item-image"></div>
+              <div class="p-5"><h3 class="font-semibold mb-1">Garden Salad</h3><p class="text-ink-soft text-sm mb-3">Fresh mixed greens with tomatoes, cucumbers and dressing</p><div class="text-gold font-bold">R35.00</div></div>
+            </div>
+            <div class="menu-item-card">
+              <div class="menu-item-image-wrap"><img src="https://i.postimg.cc/VNZkD4kP/Chips.jpg" alt="Chips" class="menu-item-image"></div>
+              <div class="p-5"><h3 class="font-semibold mb-1">Chips</h3><p class="text-ink-soft text-sm mb-3">Crispy golden fries with a sprinkle of herbs</p><div class="text-gold font-bold">R30.00</div></div>
+            </div>
+          </div>
+        </div>
+        <!-- Beverages -->
+        <div class="menu-category hidden" data-category="beverages">
+          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="menu-item-card">
+              <div class="menu-item-image-wrap"><img src="https://i.postimg.cc/sXBD8SMQ/Local-Beer.jpg" alt="Local Beer" class="menu-item-image"></div>
+              <div class="p-5"><h3 class="font-semibold mb-1">Local Beer</h3><p class="text-ink-soft text-sm mb-3">500ml of our finest South African craft beer</p><div class="text-gold font-bold">R35.00</div></div>
+            </div>
+            <div class="menu-item-card">
+              <div class="menu-item-image-wrap"><img src="https://i.postimg.cc/7P2Zn3vj/wine.jpg" alt="House Wine" class="menu-item-image"></div>
+              <div class="p-5"><h3 class="font-semibold mb-1">House Wine</h3><p class="text-ink-soft text-sm mb-3">Glass of our premium South African house wine</p><div class="text-gold font-bold">R45.00</div></div>
+            </div>
+            <div class="menu-item-card">
+              <div class="menu-item-image-wrap"><img src="https://i.postimg.cc/9QJmQ1Tw/juiceee.jpg" alt="Fresh Juice" class="menu-item-image"></div>
+              <div class="p-5"><h3 class="font-semibold mb-1">Fresh Juice</h3><p class="text-ink-soft text-sm mb-3">Seasonal fresh fruit juice (orange, apple or tropical)</p><div class="text-gold font-bold">R25.00</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PRIVATE FUNCTIONS ============ -->
+  <section id="functions" class="card mt-4 md:mt-5">
+    <div class="card-pad">
+      <div class="text-center max-w-2xl mx-auto mb-6">
+        <p class="eyebrow mb-3">15 FEB · Family braai special · 12–3PM</p>
+        <h2 class="font-display heading-mixed text-4xl md:text-5xl mb-5"><em>Host your event</em> <strong>with us</strong></h2>
+        <p class="text-ink-soft">Affordable, delicious catering for birthdays, baby showers, graduations and family gatherings — minimum 10 guests.</p>
+      </div>
+      <div class="flex justify-center mb-14">
+        <div class="rounded-full px-6 py-3 text-sm font-medium" style="background:var(--card-soft); color:var(--ink-soft)">
+          Minimum 10 guests &nbsp;•&nbsp; Refreshments charged separately &nbsp;•&nbsp; Decor &amp; cakes on request
+        </div>
+      </div>
+
+      <div class="grid lg:grid-cols-3 gap-6 mb-14">
+        <div class="price-card featured">
+          <div class="text-white text-center py-6" style="background:var(--ember)">
+            <p class="eyebrow-soft" style="color:rgba(255,255,255,0.75)">Option 1 · Best of All</p>
+            <div class="font-display text-4xl mt-2">R235<span class="text-lg">pp</span></div>
+          </div>
+          <div class="p-7">
+            <ul class="space-y-3 text-sm">
+              <li class="flex gap-3"><i class="ri-check-line text-ember mt-0.5"></i>10 pieces Eyethu chicken</li>
+              <li class="flex gap-3"><i class="ri-check-line text-ember mt-0.5"></i>Large BBQ chicken pizza</li>
+              <li class="flex gap-3"><i class="ri-check-line text-ember mt-0.5"></i>Large chicken mayo pizza</li>
+              <li class="flex gap-3"><i class="ri-check-line text-ember mt-0.5"></i>Meat braai — beef, wors, ribs</li>
+              <li class="flex gap-3"><i class="ri-check-line text-ember mt-0.5"></i>10 Eyethu wings</li>
+              <li class="flex gap-3"><i class="ri-check-line text-ember mt-0.5"></i>5 burgers &amp; 5 wraps</li>
+              <li class="flex gap-3"><i class="ri-check-line text-ember mt-0.5"></i>10 rolls</li>
+              <li class="flex gap-3"><i class="ri-check-line text-ember mt-0.5"></i>Chakalaka &amp; salad bowl</li>
+              <li class="flex gap-3"><i class="ri-check-line text-ember mt-0.5"></i>3 large chips</li>
+            </ul>
+          </div>
+        </div>
+        <div class="price-card">
+          <div class="text-white text-center py-6" style="background:var(--gold)">
+            <p class="eyebrow-soft" style="color:rgba(255,255,255,0.8)">Option 2</p>
+            <div class="font-display text-4xl mt-2">R205<span class="text-lg">pp</span></div>
+          </div>
+          <div class="p-7">
+            <ul class="space-y-3 text-sm">
+              <li class="flex gap-3"><i class="ri-check-line text-ember mt-0.5"></i>10 pieces Eyethu chicken</li>
+              <li class="flex gap-3"><i class="ri-check-line text-ember mt-0.5"></i>Large BBQ chicken pizza</li>
+              <li class="flex gap-3"><i class="ri-check-line text-ember mt-0.5"></i>Large chicken mayo pizza</li>
+              <li class="flex gap-3"><i class="ri-check-line text-ember mt-0.5"></i>Meat braai — beef &amp; wors</li>
+              <li class="flex gap-3"><i class="ri-check-line text-ember mt-0.5"></i>10 Eyethu wings</li>
+              <li class="flex gap-3"><i class="ri-check-line text-ember mt-0.5"></i>5 burgers &amp; 5 wraps</li>
+              <li class="flex gap-3"><i class="ri-check-line text-ember mt-0.5"></i>10 rolls</li>
+              <li class="flex gap-3"><i class="ri-check-line text-ember mt-0.5"></i>Chakalaka &amp; salad bowl</li>
+              <li class="flex gap-3"><i class="ri-check-line text-ember mt-0.5"></i>3 large chips</li>
+            </ul>
+          </div>
+        </div>
+        <div class="price-card">
+          <div class="text-white text-center py-6" style="background:var(--ink)">
+            <p class="eyebrow-soft" style="color:rgba(242,238,226,0.7)">Option 3</p>
+            <div class="font-display text-4xl mt-2">R185<span class="text-lg">pp</span></div>
+          </div>
+          <div class="p-7">
+            <ul class="space-y-3 text-sm">
+              <li class="flex gap-3"><i class="ri-check-line text-ember mt-0.5"></i>10 pieces Eyethu chicken</li>
+              <li class="flex gap-3"><i class="ri-check-line text-ember mt-0.5"></i>Large BBQ chicken pizza</li>
+              <li class="flex gap-3"><i class="ri-check-line text-ember mt-0.5"></i>Large chicken mayo pizza</li>
+              <li class="flex gap-3"><i class="ri-check-line text-ember mt-0.5"></i>10 Eyethu wings</li>
+              <li class="flex gap-3"><i class="ri-check-line text-ember mt-0.5"></i>10 rolls</li>
+              <li class="flex gap-3"><i class="ri-check-line text-ember mt-0.5"></i>Chakalaka &amp; salad bowl</li>
+              <li class="flex gap-3"><i class="ri-check-line text-ember mt-0.5"></i>2 large chips</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="font-display text-3xl italic text-center mb-8">Kids menu options</h3>
+      <div class="grid md:grid-cols-3 gap-6 mb-12">
+        <div class="price-card">
+          <div class="text-white text-center py-4" style="background:#C56A7E"><p class="text-xs uppercase tracking-wide opacity-80">Mini Platter</p><div class="font-display text-2xl mt-1">R125pp</div></div>
+          <div class="p-5 text-sm space-y-2 text-ink-soft">
+            <p>• Any small mini pizza flavour</p><p>• Cheese burger</p><p>• Chicken nuggets</p><p>• Chips</p><p>• Juice</p><p>• Ice cream</p>
+          </div>
+        </div>
+        <div class="price-card">
+          <div class="text-white text-center py-4" style="background:#5E7FA3"><p class="text-xs uppercase tracking-wide opacity-80">Kids Option 2</p><div class="font-display text-2xl mt-1">R98pp</div></div>
+          <div class="p-5 text-sm space-y-2 text-ink-soft">
+            <p>• Cheese burger</p><p>• Chicken nuggets</p><p>• Chips</p><p>• Juice</p>
+          </div>
+        </div>
+        <div class="price-card">
+          <div class="text-white text-center py-4" style="background:#5E8F6E"><p class="text-xs uppercase tracking-wide opacity-80">Kids Option 3</p><div class="font-display text-2xl mt-1">R69pp</div></div>
+          <div class="p-5 text-sm space-y-2 text-ink-soft">
+            <p>• Cheese burger</p><p>• Chips</p><p>• Juice</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="rounded-2xl p-6 md:p-8 text-center" style="background:var(--card-soft); border-left:4px solid var(--ember)">
+        <p class="font-bold mb-1">Please note: above caters for a minimum of 10 people</p>
+        <p class="text-ink-soft text-sm">Refreshments charged separately · Decor and cake prices available on request</p>
+      </div>
+      <div class="text-center mt-8">
+        <a href="https://wa.me/27724512645" class="btn-pill btn-ember">
+          <i class="ri-whatsapp-line"></i> WhatsApp Us — 072 451 2645
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ GALLERY ============ -->
+  <section id="gallery" class="card mt-4 md:mt-5">
+    <div class="card-pad">
+      <div class="text-center max-w-2xl mx-auto mb-12">
+        <p class="eyebrow mb-3">From our floor</p>
+        <h2 class="font-display heading-mixed text-4xl md:text-5xl"><em>Moments that</em> <strong>make memories</strong></h2>
+      </div>
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="gallery-item h-64"><img src="https://i.postimg.cc/zB31vrN9/Traditional-Braai-Platter.jpg" alt="Traditional braai platter" class="w-full h-full object-cover"></div>
+        <div class="gallery-item h-64"><img src="https://images.unsplash.com/photo-1512719724284-dbb9ef47eac5?fm=jpg&q=70&w=900&auto=format&fit=crop" alt="Fire-grilled braai" class="w-full h-full object-cover"></div>
+        <div class="gallery-item h-64"><img src="https://i.postimg.cc/3N47SHbg/Pepperoni-Pizza.jpg" alt="Wood-fired pizza" class="w-full h-full object-cover"></div>
+        <div class="gallery-item h-64"><img src="https://i.postimg.cc/hP3hZzdF/Signature-Chicken.jpg" alt="Eyethu signature chicken" class="w-full h-full object-cover"></div>
+        <div class="gallery-item h-64"><img src="https://i.postimg.cc/ydyhWkhN/27131b23171291c0b3709a488c2eb032.jpg" alt="Inside the roadhouse" class="w-full h-full object-cover"></div>
+        <div class="gallery-item h-64"><img src="https://i.postimg.cc/13NngkmV/Classic-Eyethu-Burger.jpg" alt="Classic Eyethu burger" class="w-full h-full object-cover"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TESTIMONIALS ============ -->
+  <section class="card mt-4 md:mt-5">
+    <div class="card-pad">
+      <div class="text-center max-w-2xl mx-auto mb-12">
+        <p class="eyebrow mb-3">Word around Uitval</p>
+        <h2 class="font-display heading-mixed text-4xl md:text-5xl"><em>What our</em> <strong>guests say</strong></h2>
+      </div>
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="quote-card p-7 text-center">
+          <div class="w-12 h-12 rounded-full flex items-center justify-center bg-ember text-white mx-auto mb-4"><i class="ri-double-quotes-l"></i></div>
+          <p class="text-ink-soft italic mb-4">"The braai was on fire (literally) and the staff were amazing. Perfect for our graduation party!"</p>
+          <p class="font-semibold text-sm">— Sibusiso L.</p>
+        </div>
+        <div class="quote-card p-7 text-center">
+          <div class="w-12 h-12 rounded-full flex items-center justify-center bg-ember text-white mx-auto mb-4"><i class="ri-double-quotes-l"></i></div>
+          <p class="text-ink-soft italic mb-4">"Kids had a blast and the pizza was out of this world. We'll definitely be back!"</p>
+          <p class="font-semibold text-sm">— Anele R.</p>
+        </div>
+        <div class="quote-card p-7 text-center">
+          <div class="w-12 h-12 rounded-full flex items-center justify-center bg-ember text-white mx-auto mb-4"><i class="ri-double-quotes-l"></i></div>
+          <p class="text-ink-soft italic mb-4">"Finally a proper sit-down roadhouse in Uitval. Authentic flavours, excellent service."</p>
+          <p class="font-semibold text-sm">— Thabo M.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ BOOKING ============ -->
+  <section id="booking" class="card mt-4 md:mt-5">
+    <div class="card-pad max-w-3xl mx-auto">
+      <div class="text-center mb-10">
+        <p class="eyebrow mb-3">Reserve in minutes</p>
+        <h2 class="font-display heading-mixed text-4xl md:text-5xl"><em>Book a table</em> <strong>or function</strong></h2>
+        <p class="text-ink-soft mt-4">We'll confirm by phone or WhatsApp.</p>
+      </div>
+      <form class="space-y-6">
+        <div class="grid md:grid-cols-2 gap-6">
+          <div><label class="field-label">Full Name *</label><input type="text" required class="field-input"></div>
+          <div><label class="field-label">Phone Number *</label><input type="tel" required class="field-input"></div>
+        </div>
+        <div><label class="field-label">Email</label><input type="email" class="field-input"></div>
+        <div class="grid md:grid-cols-2 gap-6">
+          <div>
+            <label class="field-label">Booking Type</label>
+            <div class="flex gap-6">
+              <label class="flex items-center cursor-pointer">
+                <input type="radio" name="booking_type" value="table" class="hidden">
+                <div class="booking-radio w-5 h-5 border-2 rounded-full mr-2 flex items-center justify-center" style="border-color:var(--line)"><div class="w-2.5 h-2.5 bg-ember rounded-full hidden"></div></div>
+                Table
+              </label>
+              <label class="flex items-center cursor-pointer">
+                <input type="radio" name="booking_type" value="function" class="hidden">
+                <div class="booking-radio w-5 h-5 border-2 rounded-full mr-2 flex items-center justify-center" style="border-color:var(--line)"><div class="w-2.5 h-2.5 bg-ember rounded-full hidden"></div></div>
+                Private Function
+              </label>
+            </div>
+          </div>
+          <div><label class="field-label">Number of Guests</label><input type="number" min="1" class="field-input"></div>
+        </div>
+        <div class="grid md:grid-cols-2 gap-6">
+          <div><label class="field-label">Date</label><input type="date" class="field-input"></div>
+          <div><label class="field-label">Time</label><input type="time" class="field-input"></div>
+        </div>
+        <div id="menu-option-field" class="hidden">
+          <label class="field-label">Menu Option (if Function)</label>
+          <div class="relative">
+            <button type="button" class="menu-select field-select text-left flex justify-between items-center">
+              <span class="selected-option">Select menu option</span>
+              <i class="ri-arrow-down-s-line"></i>
+            </button>
+            <div class="menu-options absolute top-full left-0 right-0 mt-2 rounded-xl z-10 hidden" style="background:var(--card); border:1px solid var(--line)">
+              <div class="menu-option px-4 py-3 cursor-pointer hover:bg-black/5" data-value="option1">Option 1 — R235pp (Best of All)</div>
+              <div class="menu-option px-4 py-3 cursor-pointer hover:bg-black/5" data-value="option2">Option 2 — R205pp</div>
+              <div class="menu-option px-4 py-3 cursor-pointer hover:bg-black/5" data-value="option3">Option 3 — R185pp</div>
+              <div class="menu-option px-4 py-3 cursor-pointer hover:bg-black/5" data-value="kids1">Kids Option 1 — R125pp</div>
+              <div class="menu-option px-4 py-3 cursor-pointer hover:bg-black/5" data-value="kids2">Kids Option 2 — R98pp</div>
+              <div class="menu-option px-4 py-3 cursor-pointer hover:bg-black/5" data-value="kids3">Kids Option 3 — R69pp</div>
+            </div>
+          </div>
+        </div>
+        <div><label class="field-label">Special Requests</label><textarea rows="4" class="field-textarea" placeholder="Any special dietary requirements or requests..."></textarea></div>
+        <div class="text-center pt-2">
+          <button type="submit" id="submit-booking" class="btn-pill btn-ember">Submit Booking Request</button>
+          <div id="booking-success" class="hidden mt-4 p-4 rounded-xl text-sm" style="background:#E4EFE6; color:#33513C">Booking request submitted successfully! We'll contact you shortly to confirm.</div>
+        </div>
+      </form>
+      <div class="mt-10 pt-8 border-t hairline text-center">
+        <p class="text-ink-soft mb-4 text-sm">Or chat with us directly:</p>
+        <a href="https://wa.me/27724512645" class="btn-pill btn-outline-ink">
+          <i class="ri-whatsapp-line" style="color:var(--whatsapp)"></i> Chat on WhatsApp
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CONTACT ============ -->
+  <section id="contact" class="card mt-4 md:mt-5">
+    <div class="grid lg:grid-cols-2">
+      <div class="card-pad">
+        <p class="eyebrow mb-3">Find us</p>
+        <h2 class="font-display heading-mixed text-4xl mb-8"><em>Get in</em> <strong>touch</strong></h2>
+        <div class="space-y-6">
+          <div class="flex items-start gap-4">
+            <div class="w-12 h-12 rounded-xl flex items-center justify-center bg-ember text-white flex-shrink-0"><i class="ri-phone-line"></i></div>
+            <div><p class="font-semibold">Phone</p><p class="text-ink-soft">072 451 2645</p></div>
+          </div>
+          <div class="flex items-start gap-4">
+            <div class="w-12 h-12 rounded-xl flex items-center justify-center text-white flex-shrink-0" style="background:var(--whatsapp)"><i class="ri-whatsapp-line"></i></div>
+            <div><p class="font-semibold">WhatsApp</p><a href="https://wa.me/27724512645" class="text-ink-soft hover:text-ember">072 451 2645</a></div>
+          </div>
+          <div class="flex items-start gap-4">
+            <div class="w-12 h-12 rounded-xl flex items-center justify-center bg-ember text-white flex-shrink-0"><i class="ri-map-pin-line"></i></div>
+            <div><p class="font-semibold">Location</p><p class="text-ink-soft">Uitval, Ladysmith, KwaZulu-Natal, South Africa</p></div>
+          </div>
+          <div class="flex items-start gap-4">
+            <div class="w-12 h-12 rounded-xl flex items-center justify-center bg-ember text-white flex-shrink-0"><i class="ri-time-line"></i></div>
+            <div><p class="font-semibold">Operating Hours</p><p class="text-ink-soft">10AM – 10PM, Daily</p></div>
+          </div>
+        </div>
+      </div>
+      <div class="h-72 lg:h-auto">
+        <div class="w-full h-full bg-cover bg-center" style="background-image:url('https://images.unsplash.com/photo-1756831567129-a7f9e6ecb436?fm=jpg&q=70&w=1200&auto=format&fit=crop');"></div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="wrap mt-4 md:mt-5 pb-6">
+  <div class="card card-ink card-pad-sm">
+    <div class="grid md:grid-cols-4 gap-10">
+      <div>
+        <span class="font-display text-2xl italic">Eyethu Roadhouse</span>
+        <p class="mt-4 text-sm" style="color:rgba(242,238,226,0.65)">"Taste the tradition. Share the moment."</p>
+        <div class="flex gap-3 mt-5">
+          <a href="#" class="icon-circle" aria-label="Facebook"><i class="ri-facebook-line"></i></a>
+          <a href="#" class="icon-circle" aria-label="Instagram"><i class="ri-instagram-line"></i></a>
+          <a href="https://wa.me/27724512645" class="icon-circle" aria-label="WhatsApp"><i class="ri-whatsapp-line"></i></a>
+        </div>
+      </div>
+      <div>
+        <h4 class="font-semibold mb-4 text-sm uppercase tracking-wide" style="color:rgba(242,238,226,0.55)">Quick Links</h4>
+        <ul class="space-y-2 text-sm" style="color:rgba(242,238,226,0.8)">
+          <li><a href="#home" class="hover:text-white">Home</a></li>
+          <li><a href="#about" class="hover:text-white">About Us</a></li>
+          <li><a href="#menu" class="hover:text-white">Menu</a></li>
+          <li><a href="#functions" class="hover:text-white">Private Functions</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-semibold mb-4 text-sm uppercase tracking-wide" style="color:rgba(242,238,226,0.55)">Services</h4>
+        <ul class="space-y-2 text-sm" style="color:rgba(242,238,226,0.8)">
+          <li><a href="#gallery" class="hover:text-white">Gallery</a></li>
+          <li><a href="#booking" class="hover:text-white">Booking</a></li>
+          <li><a href="#contact" class="hover:text-white">Contact</a></li>
+          <li><a href="https://wa.me/27724512645" class="hover:text-white">WhatsApp</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-semibold mb-4 text-sm uppercase tracking-wide" style="color:rgba(242,238,226,0.55)">Contact Info</h4>
+        <ul class="space-y-2 text-sm" style="color:rgba(242,238,226,0.8)">
+          <li>Phone: 072 451 2645</li>
+          <li>Hours: 10AM – 10PM Daily</li>
+          <li>Uitval, Ladysmith, KZN</li>
+        </ul>
+      </div>
+    </div>
+    <div class="mt-10 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-sm" style="border-top:1px solid rgba(242,238,226,0.15); color:rgba(242,238,226,0.55)">
+      <p>&copy; 2026 Eyethu Roadhouse. All rights reserved.</p>
+      <p>Site by <a href="https://asande-mbhense.vercel.app/" target="_blank" rel="noopener" class="hover:text-white underline underline-offset-2">Asande Mbhense</a></p>
+    </div>
+  </div>
+</footer>
+
+<!-- ============ Floating buttons ============ -->
+<a href="https://wa.me/27724512645" class="fab fab-whatsapp" aria-label="Chat on WhatsApp">
+  <i class="ri-whatsapp-line ri-xl"></i>
+</a>
+<button type="button" id="chat-fab" class="fab fab-chat" aria-label="Chat with Eyethu Roadhouse assistant">
+  <i class="ri-chat-3-line ri-xl"></i>
+</button>
+
+<!-- ============ Chatbot panel ============ -->
+<div id="chat-panel">
+  <div class="chat-header">
+    <div class="w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0" style="background:var(--ember)"><i class="ri-fire-line"></i></div>
+    <div class="flex-1">
+      <p class="font-semibold text-sm">Eyethu Assistant</p>
+      <p class="text-xs" style="color:rgba(242,238,226,0.6)">Ask about menu, hours, bookings</p>
+    </div>
+    <button type="button" id="chat-close" class="w-8 h-8 rounded-full flex items-center justify-center hover:bg-white/10"><i class="ri-close-line"></i></button>
+  </div>
+  <div id="chat-messages" class="chat-messages"></div>
+  <div class="px-4 pb-2 flex gap-2 flex-wrap" id="chat-suggestions">
+    <button type="button" class="chat-suggest" data-q="What are your hours?">Hours</button>
+    <button type="button" class="chat-suggest" data-q="Where are you located?">Location</button>
+    <button type="button" class="chat-suggest" data-q="What's on the menu?">Menu</button>
+    <button type="button" class="chat-suggest" data-q="How do private functions work?">Functions</button>
+  </div>
+  <form class="chat-input-row" id="chat-form">
+    <input type="text" id="chat-input" placeholder="Type a question…" autocomplete="off">
+    <button type="submit" class="chat-send" aria-label="Send"><i class="ri-send-plane-fill"></i></button>
+  </form>
+</div>
+
+<script>
+// Tailwind config
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        primary: '#B23B20',
+        secondary: '#8C2C17'
+      },
+      borderRadius: { button: '999px' }
+    }
+  }
+};
+
+document.addEventListener('DOMContentLoaded', function () {
+
+  /* ---------------- Sticky nav appearance ---------------- */
+  const siteNav = document.getElementById('site-nav');
+  const heroCard = document.getElementById('home');
+  function updateNav() {
+    const heroBottom = heroCard ? heroCard.getBoundingClientRect().bottom : 0;
+    if (window.scrollY > 40 || heroBottom < 80) {
+      siteNav.classList.add('scrolled');
+    } else {
+      siteNav.classList.remove('scrolled');
+    }
+  }
+  window.addEventListener('scroll', updateNav, { passive: true });
+  updateNav();
+
+  const hamburger = document.getElementById('nav-hamburger');
+  const mobileMenu = document.getElementById('mobile-menu');
+  if (hamburger) {
+    hamburger.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+  }
+  document.querySelectorAll('#mobile-menu a').forEach(a => {
+    a.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+  });
+
+  /* ---------------- Hero carousel ---------------- */
+  const slides = document.querySelectorAll('.hero-slide');
+  const dots = document.querySelectorAll('.hero-dot');
+  let heroIndex = 0;
+  let heroTimer;
+
+  function showHero(i) {
+    slides.forEach((s, idx) => s.classList.toggle('active', idx === i));
+    dots.forEach((d, idx) => d.classList.toggle('active', idx === i));
+    heroIndex = i;
+  }
+  function nextHero() {
+    showHero((heroIndex + 1) % slides.length);
+  }
+  function restartHeroTimer() {
+    clearInterval(heroTimer);
+    heroTimer = setInterval(nextHero, 6000);
+  }
+  if (slides.length) {
+    restartHeroTimer();
+    dots.forEach(d => {
+      d.addEventListener('click', () => {
+        showHero(parseInt(d.dataset.i, 10));
+        restartHeroTimer();
+      });
+    });
+  }
+
+  /* ---------------- Menu tabs ---------------- */
+  const menuTabs = document.querySelectorAll('.menu-tab');
+  const menuCategories = document.querySelectorAll('.menu-category');
+
+  menuTabs.forEach(tab => {
+    tab.addEventListener('click', function () {
+      const category = this.dataset.category;
+      menuTabs.forEach(t => t.classList.remove('active'));
+      this.classList.add('active');
+      menuCategories.forEach(cat => {
+        cat.classList.toggle('active', cat.dataset.category === category);
+      });
+    });
+  });
+
+  /* ---------------- Booking form ---------------- */
+  const bookingForm = document.querySelector('#booking form');
+  const bookingSuccess = document.getElementById('booking-success');
+  const bookingRadios = document.querySelectorAll('input[name="booking_type"]');
+  const menuOptionField = document.getElementById('menu-option-field');
+  const menuSelect = document.querySelector('.menu-select');
+  const menuOptions = document.querySelector('.menu-options');
+  const selectedOption = document.querySelector('.selected-option');
+
+  if (bookingForm) {
+    bookingForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      setTimeout(() => {
+        bookingSuccess.classList.remove('hidden');
+        bookingForm.reset();
+        document.querySelectorAll('.booking-radio div').forEach(div => div.classList.add('hidden'));
+        menuOptionField.classList.add('hidden');
+        setTimeout(() => bookingSuccess.classList.add('hidden'), 5000);
+      }, 800);
+    });
+  }
+
+  bookingRadios.forEach(radio => {
+    radio.addEventListener('change', function () {
+      const radioDiv = this.nextElementSibling.querySelector('div');
+      document.querySelectorAll('.booking-radio div').forEach(div => div.classList.add('hidden'));
+      radioDiv.classList.remove('hidden');
+      menuOptionField.classList.toggle('hidden', this.value !== 'function');
+    });
+  });
+
+  document.querySelectorAll('.booking-radio').forEach(radio => {
+    radio.addEventListener('click', function () {
+      const input = this.parentElement.querySelector('input');
+      input.checked = true;
+      input.dispatchEvent(new Event('change'));
+    });
+  });
+
+  if (menuSelect) {
+    menuSelect.addEventListener('click', () => menuOptions.classList.toggle('hidden'));
+    document.querySelectorAll('.menu-option').forEach(option => {
+      option.addEventListener('click', function () {
+        selectedOption.textContent = this.textContent;
+        menuOptions.classList.add('hidden');
+      });
+    });
+    document.addEventListener('click', e => {
+      if (!menuSelect.contains(e.target)) menuOptions.classList.add('hidden');
+    });
+  }
+
+  /* ---------------- Smooth scroll for anchors ---------------- */
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      const targetId = this.getAttribute('href');
+      if (targetId.length < 2) return;
+      const target = document.querySelector(targetId);
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+
+  /* ================================================================
+     Chatbot — client-side FAQ assistant powered by Fuse.js fuzzy search
+     ================================================================ */
+  const KB = [
+    {
+      q: "hours opening times when open",
+      a: "We're open every day from 10AM to 10PM, including weekends and public holidays."
+    },
+    {
+      q: "location address where are you find directions uitval ladysmith",
+      a: "You'll find us in Uitval, Ladysmith, KwaZulu-Natal — the first modern roadhouse of its kind here, serving Uitval, KwaHlathi, Limehill, Tholeni and Ekuvukeni."
+    },
+    {
+      q: "menu food what do you serve chicken burgers pizza braai",
+      a: "Our menu covers Chicken Meals, Burgers & Wraps, Pizzas, Braai Platters, Sides & Salads and Beverages — all priced in Rand. Scroll to the Menu section above, or ask me about a specific category."
+    },
+    {
+      q: "chicken signature chicken price wings schnitzel",
+      a: "Chicken Meals: Eyethu Signature Chicken R89, Eyethu Wings R65, Chicken Schnitzel R95."
+    },
+    {
+      q: "burgers wraps price classic burger chicken bacon",
+      a: "Burgers & Wraps: Classic Eyethu Burger R75, Chicken & Bacon Burger R85, Chicken Mayo Wrap R65."
+    },
+    {
+      q: "pizza pizzas price pepperoni bbq vegetarian",
+      a: "Pizzas: Pepperoni R120, BBQ Chicken R135, Vegetarian R110 — all wood-fired."
+    },
+    {
+      q: "braai platter price beef steak lamb chops ribs boerewors",
+      a: "Braai Platters: Traditional Braai Platter (beef, boerewors, ribs, pap & chakalaka) R150, Beef Steak Platter R175, Lamb Chops Platter R190."
+    },
+    {
+      q: "sides salads chips chakalaka price",
+      a: "Sides & Salads: Chakalaka R25, Garden Salad R35, Chips R30."
+    },
+    {
+      q: "drinks beverages beer wine juice price",
+      a: "Beverages: Local Beer R35, House Wine R45, Fresh Juice R25."
+    },
+    {
+      q: "vegetarian vegan options plant based",
+      a: "Yes — our Vegetarian Pizza (R110) and Garden Salad (R35) are both meat-free. Message us on WhatsApp if you have specific dietary needs and we'll help you plan."
+    },
+    {
+      q: "private function catering booking event birthday baby shower graduation packages options price",
+      a: "We cater private functions from a minimum of 10 guests. Option 1 (Best of All) is R235pp, Option 2 is R205pp, Option 3 is R185pp — refreshments charged separately, decor and cakes available on request. There are also 3 kids menu options from R69pp."
+    },
+    {
+      q: "book table reservation how to book",
+      a: "You can book a table or function using the Booking form on this page, or message us directly on WhatsApp at 072 451 2645 and we'll confirm."
+    },
+    {
+      q: "contact phone number whatsapp call",
+      a: "Call or WhatsApp us on 072 451 2645 — we're quickest to respond on WhatsApp."
+    },
+    {
+      q: "about story owners history who owns eyethu founders",
+      a: "Eyethu Roadhouse was founded by Raymond and Thandeka Mpala to bring a proper family restaurant to Uitval, without the long drive to town. \"Eyethu\" means \"ours\" in isiZulu — over 60% of our ingredients come from local suppliers."
+    },
+    {
+      q: "delivery takeaway collection deliver",
+      a: "We do collection and can arrange delivery for larger orders — WhatsApp us at 072 451 2645 to confirm delivery to your area."
+    },
+    {
+      q: "payment methods card cash eft",
+      a: "For the latest payment options please WhatsApp us at 072 451 2645 — our team will confirm what's available for your order."
+    },
+    {
+      q: "kids menu children options price",
+      a: "Kids Menu: Option 1 (Mini Platter) R125pp, Option 2 R98pp, Option 3 R69pp."
+    },
+    {
+      q: "hello hi hey greetings",
+      a: "Sawubona! 👋 I'm the Eyethu Roadhouse assistant. Ask me about our menu, hours, location or private functions."
+    },
+    {
+      q: "thank you thanks cheers",
+      a: "Pleasure! If you need anything else, just ask — or WhatsApp us on 072 451 2645."
+    }
+  ];
+
+  const fuse = (typeof Fuse !== 'undefined') ? new Fuse(KB, { keys: ['q'], threshold: 0.4, ignoreLocation: true }) : null;
+
+  const chatFab = document.getElementById('chat-fab');
+  const chatPanel = document.getElementById('chat-panel');
+  const chatClose = document.getElementById('chat-close');
+  const chatMessages = document.getElementById('chat-messages');
+  const chatForm = document.getElementById('chat-form');
+  const chatInput = document.getElementById('chat-input');
+  const chatSuggestions = document.getElementById('chat-suggestions');
+
+  function addBubble(text, who) {
+    const bubble = document.createElement('div');
+    bubble.className = 'chat-bubble ' + who;
+    bubble.textContent = text;
+    chatMessages.appendChild(bubble);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+    return bubble;
+  }
+
+  function showTyping() {
+    const wrap = document.createElement('div');
+    wrap.className = 'chat-bubble bot flex items-center gap-1';
+    wrap.id = 'typing-indicator';
+    wrap.innerHTML = '<span class="typing-dot"></span><span class="typing-dot"></span><span class="typing-dot"></span>';
+    chatMessages.appendChild(wrap);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+  }
+  function hideTyping() {
+    const el = document.getElementById('typing-indicator');
+    if (el) el.remove();
+  }
+
+  function answerFor(question) {
+    if (!fuse) return "I'm still warming up — please WhatsApp us on 072 451 2645 and we'll help right away.";
+    const results = fuse.search(question);
+    if (results.length > 0) return results[0].item.a;
+    return "I'm not sure about that one — but our team will know! WhatsApp us on 072 451 2645 and we'll get back to you.";
+  }
+
+  function handleQuestion(text) {
+    if (!text.trim()) return;
+    addBubble(text, 'user');
+    chatInput.value = '';
+    showTyping();
+    setTimeout(() => {
+      hideTyping();
+      addBubble(answerFor(text), 'bot');
+    }, 600 + Math.random() * 400);
+  }
+
+  let chatStarted = false;
+  function openChat() {
+    chatPanel.classList.add('open');
+    if (!chatStarted) {
+      chatStarted = true;
+      addBubble("Sawubona! 👋 I'm the Eyethu Roadhouse assistant. Ask me about our menu, hours, location or private functions — or tap a suggestion below.", 'bot');
+    }
+    chatInput.focus();
+  }
+  function closeChat() {
+    chatPanel.classList.remove('open');
+  }
+
+  if (chatFab) chatFab.addEventListener('click', () => {
+    chatPanel.classList.contains('open') ? closeChat() : openChat();
+  });
+  if (chatClose) chatClose.addEventListener('click', closeChat);
+
+  if (chatForm) {
+    chatForm.addEventListener('submit', e => {
+      e.preventDefault();
+      handleQuestion(chatInput.value);
+    });
+  }
+
+  if (chatSuggestions) {
+    chatSuggestions.querySelectorAll('.chat-suggest').forEach(btn => {
+      btn.addEventListener('click', () => handleQuestion(btn.dataset.q));
+    });
+  }
+});
+
+</script>
+</body>
+</html>
